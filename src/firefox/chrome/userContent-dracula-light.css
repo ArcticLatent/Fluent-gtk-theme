@@ -1,0 +1,12 @@
+@-moz-document url("about:sessionrestore"), url("about:welcomeback"), url-prefix("about:home"), url-prefix("about:newtab"), url-prefix("about:privatebrowsing") {
+  :root,
+  body {
+    background: #f8f8fb !important;
+    color: #282a36 !important;
+  }
+
+  a,
+  .text-link {
+    color: #bd93f9 !important;
+  }
+}

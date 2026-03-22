@@ -1977,13 +1977,13 @@ headerbar {
 
     &.close {
       &:hover, &:backdrop:hover {
-        background-color: $red-300;
-        color: on($red-300);
+        background-color: #BD93F9;
+        color: #282A36;
       }
 
       &:active {
-        background-color: $red-600;
-        color: on($red-600);
+        background-color: #BD93F9;
+        color: #282A36;
       }
     }
 

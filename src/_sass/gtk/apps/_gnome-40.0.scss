@@ -155,6 +155,46 @@ headerbar .linked.nautilus-pathbar {
       box-shadow: none;
       background: none;
     }
+
+    > scrolledwindow.undershoot-start:dir(ltr) > undershoot.left,
+    > scrolledwindow.undershoot-start:dir(rtl) > undershoot.right,
+    > scrolledwindow.undershoot-end:dir(ltr) > undershoot.right,
+    > scrolledwindow.undershoot-end:dir(rtl) > undershoot.left {
+      box-shadow: none;
+      background: none;
+    }
+
+    > scrolledwindow > overshoot,
+    > scrolledwindow > overshoot.left,
+    > scrolledwindow > overshoot.right,
+    > scrolledwindow > overshoot.top,
+    > scrolledwindow > overshoot.bottom,
+    > scrolledwindow > undershoot,
+    > scrolledwindow > undershoot.left,
+    > scrolledwindow > undershoot.right,
+    > scrolledwindow > undershoot.top,
+    > scrolledwindow > undershoot.bottom {
+      background: none;
+      background-image: none;
+      box-shadow: none;
+      border: none;
+      opacity: 0;
+    }
+
+    .content-pane headerbar .linked.nautilus-pathbar > scrolledwindow.undershoot-start:dir(ltr) > undershoot.left,
+    .content-pane headerbar .linked.nautilus-pathbar > scrolledwindow.undershoot-start:dir(rtl) > undershoot.right,
+    .content-pane headerbar .linked.nautilus-pathbar > scrolledwindow.undershoot-end:dir(ltr) > undershoot.right,
+    .content-pane headerbar .linked.nautilus-pathbar > scrolledwindow.undershoot-end:dir(rtl) > undershoot.left,
+    .content-pane headerbar:backdrop .linked.nautilus-pathbar > scrolledwindow.undershoot-start:dir(ltr) > undershoot.left,
+    .content-pane headerbar:backdrop .linked.nautilus-pathbar > scrolledwindow.undershoot-start:dir(rtl) > undershoot.right,
+    .content-pane headerbar:backdrop .linked.nautilus-pathbar > scrolledwindow.undershoot-end:dir(ltr) > undershoot.right,
+    .content-pane headerbar:backdrop .linked.nautilus-pathbar > scrolledwindow.undershoot-end:dir(rtl) > undershoot.left {
+      background: none;
+      background-image: none;
+      box-shadow: none;
+      border: none;
+      opacity: 0;
+    }
   }
 }
 

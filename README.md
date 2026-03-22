@@ -52,6 +52,8 @@ Run the following commands in the terminal:
 
 -l, --libadwaita        Install link to gtk4 config for theming libadwaita
 
+--firefox               Install Firefox theme files into detected Firefox profiles
+
 -u, --uninstall         Uninstall themes or link for libadwaita
 
 --tweaks                Specify versions for tweaks [solid|float|round|blur|noborder|square]
@@ -83,6 +85,12 @@ Automatically install your host GTK+ theme as a Flatpak.
 
 ### Firefox theme
 [Install Firefox theme](src/firefox)
+
+Automatic install example:
+
+```sh
+./install.sh -t dracula -c dark --firefox
+```
 
 #### Preview
 ![firefox-view](https://github.com/vinceliuice/Fluent-gtk-theme/blob/Images/firefox-view.png?raw=true)

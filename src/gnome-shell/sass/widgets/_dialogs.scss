@@ -30,6 +30,24 @@
     min-height: $small_size;
     padding: $container_padding $container_padding * 2;
     background-gradient-direction: none !important;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      &:last-child {
+        background-color: #BD93F9 !important;
+        color: #282A36 !important;
+        border-color: rgba(248, 248, 242, 0.10) !important;
+
+        &:hover {
+          background-color: #CAA9FA !important;
+          color: #282A36 !important;
+        }
+
+        &:active {
+          background-color: #B388F7 !important;
+          color: #282A36 !important;
+        }
+      }
+    }
   }
 }
 

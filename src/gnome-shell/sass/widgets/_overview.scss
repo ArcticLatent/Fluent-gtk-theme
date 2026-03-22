@@ -6,6 +6,10 @@
 
 #overviewGroup {
   background-color: $system_bg_color;
+
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: #282A36;
+  }
 }
 
 .overview-controls {

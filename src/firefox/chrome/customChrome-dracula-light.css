@@ -1,0 +1,29 @@
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --theme-primary-color: #bd93f9 !important;
+    --gnome-toolbar-background: #f3f4fb !important;
+    --gnome-tabstoolbar-background: #e8eaf6 !important;
+    --gnome-findbar-background: #e8eaf6 !important;
+    --gnome-toolbar-color: #282a36 !important;
+    --gnome-toolbar-border-color: rgba(40, 42, 54, 0.10) !important;
+    --gnome-sidebar-background: #e8eaf6 !important;
+    --gnome-menu-background: #e8eaf6 !important;
+    --gnome-menu-border-color: rgba(40, 42, 54, 0.10) !important;
+    --gnome-popover-background: #e8eaf6 !important;
+    --gnome-popover-border-color: rgba(40, 42, 54, 0.10) !important;
+    --gnome-headerbar-background: #f3f4fb !important;
+    --gnome-headerbar-border-color: rgba(40, 42, 54, 0.10) !important;
+    --gnome-button-background: rgba(40, 42, 54, 0.06) !important;
+    --gnome-button-border-color: rgba(40, 42, 54, 0.10) !important;
+    --gnome-button-color: #282a36 !important;
+    --gnome-urlbar-background: #ffffff !important;
+    --gnome-urlbar-border-color: rgba(40, 42, 54, 0.10) !important;
+    --gnome-focused-urlbar-border-color: #bd93f9 !important;
+    --gnome-private-urlbar-background: #bd93f9 !important;
+    --gnome-tabbar-tab-hover-border-bottom-color: #bd93f9 !important;
+    --gnome-tabbar-tab-active-border-bottom-color: #bd93f9 !important;
+    --gnome-switch-active-background: #bd93f9 !important;
+  }
+}

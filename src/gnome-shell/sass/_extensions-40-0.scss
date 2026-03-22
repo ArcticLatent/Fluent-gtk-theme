@@ -470,11 +470,27 @@
 .overview-components-dark .search-entry {
   caret-color: rgba(white, 0.75) !important;
 
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: #343746 !important;
+    color: #F8F8F2 !important;
+    caret-color: #F8F8F2 !important;
+    border: 1px solid rgba(248, 248, 242, 0.10) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05) !important;
+  }
+
   .search-entry-icon {
     color: rgba(white, 0.65);
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      color: rgba(248, 248, 242, 0.70) !important;
+    }
   }
 
   StLabel.hint-text {
     color: rgba(white, 0.35) !important;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      color: rgba(248, 248, 242, 0.45) !important;
+    }
   }
 }

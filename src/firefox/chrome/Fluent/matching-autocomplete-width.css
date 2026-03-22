@@ -18,7 +18,7 @@ panel#urlbar-results {
 	border-color: var(--gnome-popover-border-color) !important;
 	border-radius: 9px;
 	color: var(--gnome-toolbar-color) !important;
-	padding: 8px;
+	padding: 0 !important;
 }
 
 /* Results box */
@@ -27,7 +27,7 @@ panel#urlbar-results {
 	--item-padding-end: 0 !important;
 	max-height: 35vh !important;
 	overflow-x: auto;
-	max-width: calc(var(--box-width) - 18px) !important;
+	max-width: 100% !important;
 }
 
 /* Search panel  */

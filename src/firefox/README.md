@@ -12,6 +12,21 @@ This is a bunch of CSS code to make Firefox look closer to edge browser.
 
 ## Installation
 
+### Automatic installation
+From the repo root, install the Firefox theme into detected Firefox profiles:
+
+```sh
+./install.sh --firefox
+```
+
+For the Dracula browser variant:
+
+```sh
+./install.sh -t dracula -c dark --firefox
+```
+
+Restart Firefox after running the installer.
+
 ### Manual installation
 1. Go to `about:support` in Firefox.
 2. Application Basics > Profile Directory > Open Directory.

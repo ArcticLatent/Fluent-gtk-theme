@@ -2368,13 +2368,13 @@ headerbar windowcontrols > button:not(.suggested-action):not(.destructive-action
 }
 
 headerbar windowcontrols > button:not(.suggested-action):not(.destructive-action).close:hover {
-  background-color: #E57373;
-  color: white;
+  background-color: #BD93F9;
+  color: #282A36;
 }
 
 headerbar windowcontrols > button:not(.suggested-action):not(.destructive-action).close:active {
-  background-color: #E53935;
-  color: white;
+  background-color: #BD93F9;
+  color: #282A36;
 }
 
 headerbar.default-decoration {

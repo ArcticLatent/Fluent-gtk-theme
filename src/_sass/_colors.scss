@@ -152,7 +152,7 @@ $error:                                 if($variant == 'light', #D93025, #F28B82
 $success:                               if($variant == 'light', #0F9D58, #81C995);
 
 $suggested:                             $primary;
-$destructive:                           $error;
+$destructive:                           if($theme == 'dracula' and $variant == 'dark', #BD93F9, $error);
 
 $frame:                                 if($variant == 'light', rgba(black, 0.08), rgba(black, 0.16)); // instead of shadows
 $border:                                if($variant == 'light', rgba(black, 0.08), rgba(white, 0.12)); // Buttons and Entries

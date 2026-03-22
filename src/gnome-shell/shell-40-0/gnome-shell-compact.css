@@ -1941,7 +1941,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   font-feature-settings: "tnum";
   transition-duration: 250ms;
   border: none;
-  box-shadow: none;
+  border-bottom: none;
+  box-shadow: inset 0 -1px #44475A;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0;
   border-radius: 0;
@@ -2202,7 +2203,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 }
 
 .workspace-background {
-  border-radius: 30px;
+  border-radius: 0;
   background-color: #222222;
   box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.3);
   border: none;
@@ -2387,7 +2388,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   background-color: rgba(255, 255, 255, 0.2);
   margin-bottom: 18px;
   padding: 10px;
-  border-radius: 13px;
+  border-radius: 11px;
 }
 
 .dash-item-container .app-well-app, .show-apps {
@@ -2694,7 +2695,7 @@ StWidget.focused .app-well-app-running-dot {
 }
 
 .workspace-thumbnails .workspace-thumbnail {
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .workspace-thumbnails .placeholder {
@@ -2705,7 +2706,7 @@ StWidget.focused .app-well-app-running-dot {
 
 .workspace-thumbnail-indicator {
   border: 3px solid #1A73E8;
-  border-radius: 6px;
+  border-radius: 0;
   padding: 0px;
 }
 

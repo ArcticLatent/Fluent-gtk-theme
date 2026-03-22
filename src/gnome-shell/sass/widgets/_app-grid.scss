@@ -45,6 +45,12 @@
       border: 1px solid $icon_border_color;
       box-shadow: inset 0 1px $icon_highlight_color;
     }
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+      border: 1px solid rgba(248, 248, 242, 0.10);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+    }
   }
 
   &:active .overview-icon,
@@ -55,6 +61,12 @@
     @if $window == 'round' {
       border: 1px solid $icon_border_color;
       box-shadow: inset 0 1px $icon_highlight_color;
+    }
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+      border: 1px solid rgba(248, 248, 242, 0.10);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
     }
   }
 
@@ -90,6 +102,12 @@ StWidget.focused {
   .overview-icon {
     background-color: $inverse_bg_color;
     border-radius: $buttons_radius * 2;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+      border: 1px solid rgba(248, 248, 242, 0.10);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+    }
   }
 
   &:hover .overview-icon {
@@ -105,6 +123,12 @@ StWidget.focused {
 .app-folder-dialog { //style like the dash
   border-radius: $buttons_radius * 4;
   background-color: rgba(#222, 0.95);
+
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: rgba(#282A36, 0.96);
+    border: 1px solid rgba(248, 248, 242, 0.10);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  }
 
   @if $window == 'round' {
     border: 1px solid $icon_border_color;
@@ -209,6 +233,10 @@ StWidget.focused {
     height: 10px;
     border-radius: 10px; // the same as height&width
     background-color: white;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: rgba(189, 147, 249, 0.45);
+    }
   }
 }
 

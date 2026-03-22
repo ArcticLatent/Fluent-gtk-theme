@@ -43,6 +43,12 @@ $app_folder_size: 720px;
       border: 1px solid $icon_border_color;
       box-shadow: inset 0 1px $icon_highlight_color;
     }
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+      border: 1px solid rgba(248, 248, 242, 0.10);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+    }
   }
 
   &:active,
@@ -54,6 +60,12 @@ $app_folder_size: 720px;
     @if $window == 'round' {
       border: 1px solid $icon_border_color;
       box-shadow: inset 0 1px $icon_highlight_color;
+    }
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+      border: 1px solid rgba(248, 248, 242, 0.10);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
     }
   }
 
@@ -71,6 +83,12 @@ $app_folder_size: 720px;
 // app folders
 .app-folder {
   background-color: $inverse_bg_color;
+
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: #343746;
+    border: 1px solid rgba(248, 248, 242, 0.10);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  }
 
   &:focus { background-color: $inverse_divider_color; }
   &:hover { background-color: $inverse_divider_color; }
@@ -111,6 +129,13 @@ StWidget.focused {
   border-radius: $buttons_radius * 4;
   background-color: rgba(#222, 0.95);
   color: white;
+
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: rgba(#282A36, 0.96);
+    color: #F8F8F2;
+    border: 1px solid rgba(248, 248, 242, 0.10);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  }
 
   @if $window == 'round' {
     border: 1px solid $icon_border_color;
@@ -218,6 +243,10 @@ StWidget.focused {
     border-radius: 10px; // the same as height&width
     background-color: white;
     transition-duration: 400ms;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: rgba(189, 147, 249, 0.45);
+    }
   }
 }
 
@@ -274,6 +303,12 @@ StWidget.focused {
   &:hover {
     background-color: rgba(white, 0.1);
     color: white;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+      border: 1px solid rgba(248, 248, 242, 0.10);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+    }
   }
 
   &:active {

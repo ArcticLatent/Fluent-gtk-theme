@@ -150,29 +150,6 @@ menuitem[type="radio"][disabled="true"] .menu-iconic-icon {
 	list-style-image: url("../icons/window-close-symbolic.svg") !important;
 }
 
-/* Window buttons */
-:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-close .toolbarbutton-icon,
-:root[tabsintitlebar] #titlebar #titlebar-close .toolbarbutton-icon {
-	list-style-image: url("../icons/window-close-symbolic.svg") !important;
-}
-:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-max .toolbarbutton-icon,
-:root[tabsintitlebar] #titlebar #titlebar-max .toolbarbutton-icon {
-	list-style-image: url("../icons/window-maximize-symbolic.svg") !important;
-}
-:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-min .toolbarbutton-icon,
-:root[tabsintitlebar] #titlebar #titlebar-min .toolbarbutton-icon {
-	list-style-image: url("../icons/window-minimize-symbolic.svg") !important;
-}
-:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-restore .toolbarbutton-icon,
-:root[tabsintitlebar] #titlebar #titlebar-restore .toolbarbutton-icon,
-:root[tabsintitlebar][sizemode="maximized"] #titlebar .titlebar-max .toolbarbutton-icon,
-:root[tabsintitlebar][sizemode="maximized"] #titlebar #titlebar-max .toolbarbutton-icon {
-	list-style-image: url("../icons/window-unmaximize-symbolic.svg") !important;
-}
-:root[tabsintitlebar][inFullscreen] #window-controls #restore-button .toolbarbutton-icon {
-	list-style-image: url("../icons/view-restore-symbolic.svg") !important;
-}
-
 /* Private browsing button */
 #privatebrowsing-button {
 	list-style-image: url("../icons/user-not-tracked.svg") !important;
@@ -201,8 +178,7 @@ menuitem[type="radio"][disabled="true"] .menu-iconic-icon {
 /* New tab button */
 #new-tab-button,
 .tabs-newtab-button,
-#tabs-newtab-button,
-#TabsToolbar {
+#tabs-newtab-button {
 	list-style-image: url("../icons/tab-new-symbolic.svg") !important;
 }
 /* Home button */
@@ -482,14 +458,6 @@ menuitem[type="radio"][disabled="true"] .menu-iconic-icon {
 	.close-icon:not(.tab-close-button) image,
 	.identity-popup-permission-remove-button .button-icon,
 
-	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-close .toolbarbutton-icon,
-	:root[tabsintitlebar] #titlebar #titlebar-close .toolbarbutton-icon,
-	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-max .toolbarbutton-icon,
-	:root[tabsintitlebar] #titlebar #titlebar-max .toolbarbutton-icon,
-	:root[tabsintitlebar] #titlebar .titlebar-buttonbox .titlebar-min .toolbarbutton-icon,
-	:root[tabsintitlebar] #titlebar #titlebar-min .toolbarbutton-icon,
-	:root[tabsintitlebar][inFullscreen] #window-controls #restore-button .toolbarbutton-icon,
-
 	.popup-notification-icon[popupid="web-notifications"], .desktop-notification-icon,
 
 	#import-button .toolbarbutton-icon,
@@ -588,6 +556,9 @@ menuitem[type="radio"][disabled="true"] .menu-iconic-icon {
 
 	/* Fix for extensions icons */
 	.webextension-browser-action {
-		list-style-image: var(--webextension-menupanel-image-light, inherit) !important;
+		list-style-image: var(--webextension-toolbar-image, inherit) !important;
+	}
+	toolbar[brighttext] .webextension-browser-action {
+		list-style-image: var(--webextension-toolbar-image-dark, var(--webextension-toolbar-image, inherit)) !important;
 	}
 }

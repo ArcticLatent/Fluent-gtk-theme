@@ -2567,7 +2567,7 @@ StWidget.focused .app-well-app-running-dot {
 .workspace-thumbnail-indicator {
   border: 2px solid #1A73E8;
   padding: 6px;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .all-apps,

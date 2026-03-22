@@ -1,0 +1,57 @@
+@-moz-document url("about:sessionrestore"), url("about:welcomeback"), url-prefix("about:home"), url-prefix("about:newtab"), url-prefix("about:privatebrowsing") {
+  :root,
+  body {
+    background: #282a36 !important;
+    color: #f8f8f2 !important;
+  }
+
+  a,
+  .text-link {
+    color: #caa9fa !important;
+  }
+
+  button,
+  .button,
+  input[type="button"],
+  input[type="submit"] {
+    background: #343746 !important;
+    color: #f8f8f2 !important;
+    border: 1px solid rgba(248, 248, 242, 0.10) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px !important;
+  }
+
+  button.primary,
+  .button.primary,
+  .primary {
+    background: #caa9fa !important;
+    color: #282a36 !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .card,
+  .top-site-outer .tile,
+  .search-wrapper,
+  .section,
+  .actions,
+  .info,
+  .welcomeContainer,
+  .modal,
+  .promo,
+  .activity-stream section {
+    background: #343746 !important;
+    border: 1px solid rgba(248, 248, 242, 0.10) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+  }
+
+  input,
+  textarea,
+  select {
+    background: #21222c !important;
+    color: #f8f8f2 !important;
+    border: 1px solid rgba(248, 248, 242, 0.10) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05) !important;
+  }
+}

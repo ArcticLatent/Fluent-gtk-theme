@@ -25,21 +25,21 @@ toolbarspring {
 	border-radius: 5px !important;
 	padding: 0 0 !important;
 	outline: none !important;
+	overflow: hidden !important;
 }
 
 #urlbar:hover,
 #searchbar:hover {
 	background: var(--gnome-focused-urlbar-background) !important;
-	outline: 1px solid var(--gnome-urlbar-border-color) !important;
-	-moz-outline-radius: 5px;
+	outline: none !important;
+	box-shadow: inset 0 0 0 1px var(--gnome-urlbar-border-color) !important;
 }
 
 #urlbar[breakout][breakout-extend],
 #searchbar:focus-within {
 	background: var(--gnome-focused-urlbar-background) !important;
-	outline: 2px solid var(--gnome-focused-urlbar-border-color) !important;
-	outline-offset: -2px;
-	-moz-outline-radius: 5px;
+	outline: none !important;
+	box-shadow: inset 0 0 0 1px var(--gnome-focused-urlbar-border-color) !important;
 	transition: all 100ms;
 }
 
@@ -48,6 +48,7 @@ toolbarspring {
 	border: none !important;
 	background: transparent !important;
 	border-radius: 5px !important;
+	overflow: hidden !important;
 }
 
 #urlbar[breakout][breakout-extend] {
@@ -68,6 +69,8 @@ toolbarspring {
 	max-height: 30px !important;
 	padding: 2px !important;
 	border: none !important;
+	border-radius: 4px !important;
+	overflow: hidden !important;
 }
 
 /* URL bar and Search bar's icons */
@@ -135,7 +138,7 @@ toolbarspring {
 	--item-padding-end: 0 !important;
 	max-height: 40vh !important;
 	overflow-x: auto;
-	padding: 0 8px !important;
+	padding: 0 !important;
 }
 
 .urlbarView-body-inner {
@@ -147,6 +150,7 @@ toolbarspring {
 }
 .urlbarView-row-inner {
 	padding-block: 5px !important;
+	padding-inline: 0 !important;
 	border-radius: 2px !important;
 }
 
@@ -188,7 +192,7 @@ toolbarspring {
 
 /* URL bar and Search bar */
 #urlbar[focused] .urlbar-textbox-container {
-	margin: -1px !important;
+	margin: 0 !important;
 }
 #searchbar > .searchbar-textbox[focused] .searchbar-search-button {
 	margin-left: -1px !important;

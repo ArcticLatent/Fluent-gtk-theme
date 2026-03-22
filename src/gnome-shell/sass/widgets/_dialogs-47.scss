@@ -51,20 +51,44 @@
       color: white !important;
       border-color: mix($fg_color, $destructive_color, 15%) !important;
 
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: #BD93F9 !important;
+        color: #282A36 !important;
+        border-color: rgba(248, 248, 242, 0.10) !important;
+      }
+
       &:hover {
         background-color: lighten($destructive_color, 9%) !important;
         border-color: mix($fg_color, $destructive_color, 25%) !important;
+
+        @if $theme == 'dracula' and $variant == 'dark' {
+          background-color: #CAA9FA !important;
+          color: #282A36 !important;
+          border-color: rgba(248, 248, 242, 0.16) !important;
+        }
       }
 
       &:active {
         background-color: lighten($destructive_color, 2%) !important;
         border-color: mix($fg_color, $destructive_color, 25%) !important;
+
+        @if $theme == 'dracula' and $variant == 'dark' {
+          background-color: #B388F7 !important;
+          color: #282A36 !important;
+          border-color: rgba(248, 248, 242, 0.16) !important;
+        }
       }
 
       &:insensitive {
         color: rgba(white, 0.5) !important;
         background-color: rgba($destructive_color, 0.35) !important;
         border-color: mix($fg_color, $destructive_color, 10%) !important;
+
+        @if $theme == 'dracula' and $variant == 'dark' {
+          color: rgba(40, 42, 54, 0.65) !important;
+          background-color: rgba(189, 147, 249, 0.45) !important;
+          border-color: rgba(248, 248, 242, 0.10) !important;
+        }
       }
     }
   }

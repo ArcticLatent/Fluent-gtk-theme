@@ -14,6 +14,7 @@ blur=
 outline=
 titlebutton=
 icon='-default'
+firefox=
 
 # Destination directory
 if [[ "$UID" -eq "$ROOT_UID" ]]; then
@@ -78,6 +79,8 @@ OPTIONS:
                           (Default: Windows)
 
   -l, --libadwaita        Install link to gtk4 config for theming libadwaita
+
+  --firefox              Install Firefox theme files into detected Firefox profiles
 
   -r, --remove
   -u, --uninstall         Uninstall/remove themes or link for libadwaita
@@ -273,6 +276,7 @@ themes=()
 colors=()
 sizes=()
 lcolors=()
+firefox_profiles=()
 
 while [[ "$#" -gt 0 ]]; do
   case "${1:-}" in
@@ -287,6 +291,10 @@ while [[ "$#" -gt 0 ]]; do
       ;;
     -l|--libadwaita)
       libadwaita="true"
+      shift
+      ;;
+    --firefox)
+      firefox="true"
       shift
       ;;
     -u|--uninstall|-r|--remove)
@@ -745,6 +753,275 @@ link_libadwaita() {
   ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css"                                    "${HOME}/.config/gtk-4.0/gtk-dark.css"
 }
 
+append_unique_profile() {
+  local profile="$1"
+
+  [[ -d "$profile" ]] || return
+
+  for existing in "${firefox_profiles[@]}"; do
+    [[ "$existing" == "$profile" ]] && return
+  done
+
+  firefox_profiles+=("$profile")
+}
+
+parse_firefox_profiles_ini() {
+  local root="$1"
+  local ini="$root/profiles.ini"
+  local in_profile="false"
+  local path=""
+  local is_relative="1"
+  local line=""
+  local resolved=""
+
+  [[ -f "$ini" ]] || return
+
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    case "$line" in
+      "[Profile"*"]")
+        if [[ "$in_profile" == "true" && -n "$path" ]]; then
+          if [[ "$is_relative" == "1" ]]; then
+            resolved="$root/$path"
+          else
+            resolved="$path"
+          fi
+          append_unique_profile "$resolved"
+        fi
+        in_profile="true"
+        path=""
+        is_relative="1"
+        ;;
+      \[*\])
+        if [[ "$in_profile" == "true" && -n "$path" ]]; then
+          if [[ "$is_relative" == "1" ]]; then
+            resolved="$root/$path"
+          else
+            resolved="$path"
+          fi
+          append_unique_profile "$resolved"
+        fi
+        in_profile="false"
+        path=""
+        is_relative="1"
+        ;;
+      Path=*)
+        [[ "$in_profile" == "true" ]] && path="${line#Path=}"
+        ;;
+      IsRelative=*)
+        [[ "$in_profile" == "true" ]] && is_relative="${line#IsRelative=}"
+        ;;
+    esac
+  done < "$ini"
+
+  if [[ "$in_profile" == "true" && -n "$path" ]]; then
+    if [[ "$is_relative" == "1" ]]; then
+      resolved="$root/$path"
+    else
+      resolved="$path"
+    fi
+    append_unique_profile "$resolved"
+  fi
+}
+
+find_firefox_profiles() {
+  firefox_profiles=()
+
+  parse_firefox_profiles_ini "${HOME}/.mozilla/firefox"
+  parse_firefox_profiles_ini "${HOME}/.config/mozilla/firefox"
+  parse_firefox_profiles_ini "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
+}
+
+write_managed_block() {
+  local file="$1"
+  local start_marker="$2"
+  local end_marker="$3"
+  local source_file="$4"
+  local tmp_file=""
+
+  mkdir -p "$(dirname "$file")"
+  [[ -f "$file" ]] || touch "$file"
+
+  tmp_file="$(mktemp)"
+  awk -v start="$start_marker" -v end="$end_marker" '
+    BEGIN { skip = 0 }
+    index($0, start) { skip = 1; next }
+    index($0, end) { skip = 0; next }
+    !skip { print }
+  ' "$file" > "$tmp_file"
+
+  mv "$tmp_file" "$file"
+
+  {
+    cat "$file"
+    [[ -s "$file" ]] && printf '\n'
+    printf '%s\n' "$start_marker"
+    cat "$source_file"
+    printf '\n%s\n' "$end_marker"
+  } > "$tmp_file"
+
+  mv "$tmp_file" "$file"
+}
+
+write_managed_block_at_top() {
+  local file="$1"
+  local start_marker="$2"
+  local end_marker="$3"
+  local source_file="$4"
+  local tmp_file=""
+
+  mkdir -p "$(dirname "$file")"
+  [[ -f "$file" ]] || touch "$file"
+
+  tmp_file="$(mktemp)"
+  awk -v start="$start_marker" -v end="$end_marker" '
+    BEGIN { skip = 0 }
+    index($0, start) { skip = 1; next }
+    index($0, end) { skip = 0; next }
+    !skip { print }
+  ' "$file" > "$tmp_file"
+
+  {
+    printf '%s\n' "$start_marker"
+    cat "$source_file"
+    printf '\n%s\n' "$end_marker"
+    [[ -s "$tmp_file" ]] && printf '\n'
+    cat "$tmp_file"
+  } > "$file"
+
+  rm -f "$tmp_file"
+}
+
+ensure_firefox_pref() {
+  local file="$1"
+  local pref_name="$2"
+  local pref_value="$3"
+
+  mkdir -p "$(dirname "$file")"
+  [[ -f "$file" ]] || touch "$file"
+
+  if grep -q "user_pref(\"$pref_name\"" "$file"; then
+    sed -i "s|^user_pref(\"$pref_name\".*|user_pref(\"$pref_name\", $pref_value);|" "$file"
+  else
+    printf 'user_pref("%s", %s);\n' "$pref_name" "$pref_value" >> "$file"
+  fi
+}
+
+firefox_override_variant() {
+  local theme="$1"
+  local color="$2"
+
+  if [[ "$theme" == "-dracula" && "$color" == "-Dark" ]]; then
+    printf 'dracula-dark'
+  elif [[ "$theme" == "-dracula" ]]; then
+    printf 'dracula-light'
+  else
+    printf 'default'
+  fi
+}
+
+preferred_firefox_theme() {
+  local theme=""
+
+  for theme in "${themes[@]}"; do
+    if [[ "$theme" == "-dracula" ]]; then
+      printf '%s' "$theme"
+      return
+    fi
+  done
+
+  printf '%s' "${themes[0]}"
+}
+
+preferred_firefox_color() {
+  local color=""
+
+  for color in "${lcolors[@]}"; do
+    if [[ "$color" == "-Dark" ]]; then
+      printf '%s' "$color"
+      return
+    fi
+  done
+
+  if [[ "${#lcolors[@]}" -gt 0 ]]; then
+    printf '%s' "${lcolors[0]}"
+  else
+    printf '%s' "${colors[0]}"
+  fi
+}
+
+install_firefox_profile() {
+  local profile_dir="$1"
+  local variant="$2"
+  local chrome_dir="$profile_dir/chrome"
+  local userchrome_file="$chrome_dir/userChrome.css"
+  local customchrome_file="$chrome_dir/customChrome.css"
+  local usercontent_file="$chrome_dir/userContent.css"
+  local userjs_file="$profile_dir/user.js"
+  local custom_source="$SRC_DIR/firefox/chrome/customChrome.css"
+  local content_source="$SRC_DIR/firefox/chrome/userContent.css"
+
+  if [[ "$variant" == "dracula-dark" ]]; then
+    custom_source="$SRC_DIR/firefox/chrome/customChrome-dracula-dark.css"
+    content_source="$SRC_DIR/firefox/chrome/userContent-dracula-dark.css"
+  elif [[ "$variant" == "dracula-light" ]]; then
+    custom_source="$SRC_DIR/firefox/chrome/customChrome-dracula-light.css"
+    content_source="$SRC_DIR/firefox/chrome/userContent-dracula-light.css"
+  fi
+
+  mkdir -p "$chrome_dir"
+  rm -rf "$chrome_dir/Fluent"
+  cp -r "$SRC_DIR/firefox/chrome/Fluent" "$chrome_dir/Fluent"
+  sed -i '/^@import "Fluent\/theme\.css"; \/\*\*\/$/d' "$userchrome_file" 2> /dev/null || true
+  sed -i '/^@import "customChrome\.css"; \/\*\*\/$/d' "$userchrome_file" 2> /dev/null || true
+
+  write_managed_block_at_top \
+    "$userchrome_file" \
+    "/* Fluent theme imports: begin */" \
+    "/* Fluent theme imports: end */" \
+    "$SRC_DIR/firefox/chrome/userChrome.css"
+
+  write_managed_block \
+    "$customchrome_file" \
+    "/* Fluent installer overrides: begin */" \
+    "/* Fluent installer overrides: end */" \
+    "$custom_source"
+
+  write_managed_block \
+    "$usercontent_file" \
+    "/* Fluent installer content overrides: begin */" \
+    "/* Fluent installer content overrides: end */" \
+    "$content_source"
+
+  ensure_firefox_pref "$userjs_file" "toolkit.legacyUserProfileCustomizations.stylesheets" "true"
+  ensure_firefox_pref "$userjs_file" "browser.tabs.drawInTitlebar" "true"
+  ensure_firefox_pref "$userjs_file" "browser.tabs.inTitlebar" "1"
+  ensure_firefox_pref "$userjs_file" "browser.uidensity" "0"
+
+  echo "Installed Firefox theme in '$profile_dir'..."
+}
+
+install_firefox_theme() {
+  local theme="$1"
+  local color="$2"
+  local variant=""
+  local profile=""
+
+  find_firefox_profiles
+
+  if [[ "${#firefox_profiles[@]}" -eq 0 ]]; then
+    echo "No Firefox profiles found. Skipping Firefox theme installation."
+    return
+  fi
+
+  variant="$(firefox_override_variant "$theme" "$color")"
+
+  for profile in "${firefox_profiles[@]}"; do
+    install_firefox_profile "$profile" "$variant"
+  done
+
+  echo "Restart Firefox to apply the browser theme."
+}
+
 clean() {
   local dest="$1"
   local name="$2"
@@ -827,6 +1104,10 @@ else
 
    if [[ "$libadwaita" == 'true' ]]; then
      uninstall_link && link_theme
+   fi
+
+   if [[ "$firefox" == 'true' ]]; then
+     install_firefox_theme "$(preferred_firefox_theme)" "$(preferred_firefox_color)"
    fi
 fi
 

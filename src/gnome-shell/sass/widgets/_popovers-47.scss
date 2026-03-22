@@ -107,6 +107,12 @@
   box-shadow: none;
   background-image: none !important;
 
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: #282a36 !important;
+    border: 1px solid rgba(248, 248, 242, 0.10) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05) !important;
+  }
+
   .popup-menu-item {
     margin: 0;
     border-radius: 0;
@@ -115,10 +121,18 @@
 
     &.selected, &:hover, &:focus {
       background-color: $divider_color !important;
+
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: rgba(248, 248, 242, 0.07) !important;
+      }
     }
 
     &:active {
       background-color: $track_color !important;
+
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: rgba(248, 248, 242, 0.12) !important;
+      }
     }
 
     &:last-child {

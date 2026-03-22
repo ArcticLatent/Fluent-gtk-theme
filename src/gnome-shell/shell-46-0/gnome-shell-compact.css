@@ -2088,7 +2088,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   font-feature-settings: "tnum";
   transition-duration: 250ms;
   border: none;
-  box-shadow: none;
+  border-bottom: none;
+  box-shadow: inset 0 -1px #44475A;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0;
   border-radius: 0;
@@ -2349,7 +2350,7 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
 }
 
 .workspace-background {
-  border-radius: 30px;
+  border-radius: 0;
   background-color: #222222;
   box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.3);
   border: none;
@@ -2907,7 +2908,7 @@ StWidget.focused .app-grid-running-dot {
 }
 
 .workspace-thumbnails .workspace-thumbnail {
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .workspace-thumbnails .placeholder {
@@ -2918,7 +2919,7 @@ StWidget.focused .app-grid-running-dot {
 
 .workspace-thumbnail-indicator {
   border: 3px solid #1A73E8;
-  border-radius: 6px;
+  border-radius: 0;
   padding: 0px;
 }
 
@@ -3364,6 +3365,12 @@ StWidget.focused .app-grid-running-dot {
      to extend to the border */
 }
 
+.quick-toggle:insensitive {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
 .quick-toggle:hover {
   background-color: rgba(0, 0, 0, 0.12) !important;
 }
@@ -3456,6 +3463,12 @@ StWidget.focused .app-grid-running-dot {
   color: rgba(0, 0, 0, 0.54);
 }
 
+.quick-menu-toggle .quick-toggle-arrow:insensitive {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
 .quick-menu-toggle .quick-toggle-arrow:hover {
   background-color: rgba(0, 0, 0, 0.12) !important;
   color: rgba(0, 0, 0, 0.87);
@@ -3520,6 +3533,14 @@ StWidget.focused .app-grid-running-dot {
 .message .message-header .quick-slider .message-close-button {
   min-width: 22px;
   min-height: 22px;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.quick-slider .icon-button:insensitive, .quick-slider .background-app-item .close-button:insensitive, .background-app-item .quick-slider .close-button:insensitive, .quick-slider .message .message-header .message-expand-button:insensitive, .message .message-header .quick-slider .message-expand-button:insensitive,
+.quick-slider .message .message-header .message-close-button:insensitive,
+.message .message-header .quick-slider .message-close-button:insensitive {
+  opacity: 1;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.87) !important;
 }
