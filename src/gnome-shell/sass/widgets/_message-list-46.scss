@@ -97,12 +97,24 @@
     color: $secondary_fg_color;
     border: 1px solid $popover_button_border;
 
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: #343746;
+    }
+
     &:hover, &:focus {
       background-color: $popover_button_hover;
       border-color: if($variant == 'light', rgba(black, 0.15), rgba(white, 0.08));
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: mix(white, #343746, 6%);
+      }
     }
   
-    &:active { background-color: $popover_button_active; }
+    &:active {
+      background-color: $popover_button_active;
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: mix(white, #343746, 10%);
+      }
+    }
   }
 
   // subtract side padding to accommodate the close button's border

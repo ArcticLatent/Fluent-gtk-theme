@@ -2745,6 +2745,10 @@ popover.background {
     border: 1px solid $divider;
     box-shadow: $shadow-z6;
     background-color: $menu;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: $base-alt;
+    }
   }
 
   > contents {
@@ -2754,6 +2758,10 @@ popover.background {
     background-color: $menu;
     border-radius: $popover-radius;
     color: on($menu);
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: $base-alt;
+    }
 
     @if $outline =='true' {
       @if $variant =='light' {
@@ -2811,6 +2819,10 @@ popover.background {
   .view:not(:selected),
   toolbar {
     background-color: $surface;
+
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background-color: $base-alt;
+    }
   }
 
   list > row {

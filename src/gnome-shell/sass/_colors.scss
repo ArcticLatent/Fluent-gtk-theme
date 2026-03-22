@@ -19,6 +19,7 @@
     @if ($theme == 'green') { @return $green-500; }
     @if ($theme == 'teal') { @return $teal-500; }
     @if ($theme == 'grey') { @return $grey-700; }
+    @if ($theme == 'dracula') { @return #BD93F9; }
   } @else {
     @if ($theme == 'default') { @return #3281ea; }
     @if ($theme == 'purple') { @return $purple-300; }
@@ -29,6 +30,7 @@
     @if ($theme == 'green') { @return $green-400; }
     @if ($theme == 'teal') { @return $teal-400; }
     @if ($theme == 'grey') { @return $grey-600; }
+    @if ($theme == 'dracula') { @return #CAA9FA; }
   }
 }
 
@@ -104,6 +106,20 @@ $panel_bg:                            if($panel == 'light', #f3f3f3, #202020);
 $panel_bg_color:                      if($opacity == 'default', if($panel == 'light', rgba(white, 0.5), rgba(black, 0.5)), $panel_bg);
 $menu_bg_color:                       if($opacity == 'default', rgba($base_color, 0.97), $base_color);
 $system_bg_color:                     #222222;
+$dash_bg_color:                       rgba(white, 0.2);
+$dash_bg_color_overview:              rgba(white, 0.2);
+$dash_separator_color:                rgba(white, 0.15);
+$dash_bg_radius:                      $menu_radius + $container_padding * 2;
+
+@if $theme == 'dracula' and $variant == 'dark' {
+  $panel_bg:                          #21222C;
+  $panel_bg_color:                    if($opacity == 'default', rgba(#21222C, 0.82), #21222C);
+  $menu_bg_color:                     if($opacity == 'default', rgba(#282A36, 0.96), #282A36);
+  $dash_bg_color:                     rgba(#21222C, 0.88);
+  $dash_bg_color_overview:            rgba(#282A36, 0.78);
+  $dash_separator_color:              rgba(#F8F8F2, 0.14);
+  $dash_bg_radius:                    0;
+}
 
 $link_color:                          $primary_color;
 $visited_link_color:                  if($variant == 'light', $purple-500, $purple-200);

@@ -18,6 +18,15 @@
   background-color: transparent;
   box-shadow: none;
 
+  @if $theme == 'dracula' and $variant == 'dark' {
+    &.top #dash .dash-background,
+    &.bottom #dash .dash-background,
+    &.left #dash .dash-background,
+    &.right #dash .dash-background {
+      border-radius: 0 !important;
+    }
+  }
+
   .number-overlay {
     color: $light_fg_color;
     background-color: rgba(black, 0.75);
@@ -67,7 +76,7 @@
   &.shrink #dash {
     .dash-background {
       padding: 0 !important;
-      border-radius: $menu_radius;
+      border-radius: if($theme == 'dracula' and $variant == 'dark', 0, $menu_radius);
     }
 
     .dash-item-container .app-well-app, .show-apps {

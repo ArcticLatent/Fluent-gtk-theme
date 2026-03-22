@@ -6,6 +6,13 @@
   padding: 0;
   @extend %dialogs;
 
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background: #282A36;
+    border-radius: 6px;
+    border: 1px solid rgba(248, 248, 242, 0.10);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+
   .modal-dialog-content-box {
     margin: $container_padding * 4 $container_padding * 5 $container_padding * 6;
     spacing: $container_padding * 4;

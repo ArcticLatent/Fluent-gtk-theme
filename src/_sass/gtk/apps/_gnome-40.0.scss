@@ -130,6 +130,46 @@ placesview {
       margin-left: 0;
     }
   }
+
+}
+
+headerbar .linked.nautilus-pathbar {
+  @if $theme == 'dracula' and $variant == 'dark' {
+    border-radius: 0;
+    border: 1px solid rgba(248, 248, 242, 0.10);
+    box-shadow: none;
+    background: none;
+
+    > scrolledwindow,
+    > scrolledwindow > viewport,
+    > scrolledwindow > viewport > widget,
+    button,
+    button:checked,
+    button.current-dir,
+    button > box,
+    button > widget,
+    button > image,
+    button > label {
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      background: none;
+    }
+  }
+}
+
+window.csd.nautilus-window {
+  @if $theme == 'dracula' and $variant == 'dark' {
+    popover.background {
+      > arrow,
+      > contents,
+      list,
+      .view:not(:selected),
+      toolbar {
+        background-color: $base-alt;
+      }
+    }
+  }
 }
 
 navigation-view-page > toolbarview > scrolledwindow > viewport > clamp {
