@@ -273,6 +273,10 @@
     box-shadow: none !important;
   }
 
+  #back-button,
+  #back-button .toolbarbutton-icon,
+  #forward-button,
+  #forward-button .toolbarbutton-icon,
   #tabs-newtab-button,
   #tabs-newtab-button .toolbarbutton-icon,
   #new-tab-button,
@@ -291,6 +295,30 @@
     color: #f8f8f2 !important;
     stroke: #f8f8f2 !important;
     filter: brightness(1.55) !important;
+  }
+
+  #back-button,
+  #forward-button,
+  #back-button[disabled],
+  #forward-button[disabled],
+  #back-button > .toolbarbutton-icon,
+  #forward-button > .toolbarbutton-icon,
+  #back-button[disabled] > .toolbarbutton-icon,
+  #forward-button[disabled] > .toolbarbutton-icon {
+    opacity: 1 !important;
+    fill: #ffffff !important;
+    fill-opacity: 1 !important;
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: brightness(2.6) contrast(1.15) !important;
+  }
+
+  #back-button:not([disabled]):hover,
+  #forward-button:not([disabled]):hover {
+    background: rgba(248, 248, 242, 0.06) !important;
+    border-radius: 6px !important;
   }
 
   .tabbrowser-tab {

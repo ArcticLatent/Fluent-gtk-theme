@@ -9,18 +9,35 @@
 .switcher-list {
   @extend %osd_panel;
 
+  @if $theme == 'dracula' and $variant == 'dark' {
+    background-color: #282A36;
+    border: 1px solid rgba(248, 248, 242, 0.10);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+
   .item-box {
     padding: 8px;
     border-radius: $buttons_radius;
     border: none;
 
     &:outlined {
-      background-color: $divider_color;
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: #343746;
+        border: 1px solid rgba(248, 248, 242, 0.08);
+      } @else {
+        background-color: $divider_color;
+      }
     }
 
     &:selected {
-      background-color: $primary_color;
-      color: $inverse_fg_color;
+      @if $theme == 'dracula' and $variant == 'dark' {
+        background-color: rgba(189, 147, 249, 0.18);
+        border: 1px solid rgba(189, 147, 249, 0.55);
+        color: $fg_color;
+      } @else {
+        background-color: $primary_color;
+        color: $inverse_fg_color;
+      }
     }
   }
 
@@ -36,7 +53,11 @@
 
   .separator {
     width: 1px;
-    background: $border_color;
+    @if $theme == 'dracula' and $variant == 'dark' {
+      background: rgba(248, 248, 242, 0.10);
+    } @else {
+      background: $border_color;
+    }
   }
 
   .switcher-list-item-container {
@@ -46,9 +67,9 @@
 
 .switcher-arrow {
   border-color: rgba(0,0,0,0);
-  color: $hint_fg_color;
+  color: if($theme == 'dracula' and $variant == 'dark', rgba(248, 248, 242, 0.65), $hint_fg_color);
   &:highlighted {
-    color: $fg_color;
+    color: if($theme == 'dracula' and $variant == 'dark', #BD93F9, $fg_color);
   }
 }
 
@@ -61,5 +82,5 @@
 
 // Window cycler highlight
 .cycler-highlight {
-  border: 5px solid $primary_color;
+  border: 5px solid if($theme == 'dracula' and $variant == 'dark', #BD93F9, $primary_color);
 }

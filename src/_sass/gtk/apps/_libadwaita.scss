@@ -882,7 +882,7 @@ toolbarview.undershoot-bottom scrolledwindow {
 .unfolded stacksidebar.sidebar { border: none; }
 
 .sidebar-pane {
-  background-color: $base-alt;
+  background-color: if($theme == 'dracula' and $variant == 'dark', rgba(52, 55, 70, 0.78), $base-alt);
   color: $text;
 
   &:backdrop {
@@ -951,7 +951,7 @@ toolbarview.undershoot-bottom scrolledwindow {
 /* Middle pane in three-pane setups */
 .content-pane .sidebar-pane,
 .sidebar-pane .content-pane {
-  background-color: $base;
+  background-color: if($theme == 'dracula' and $variant == 'dark', rgba(40, 42, 54, 0.78), $base);
   color: $text;
 
   &:backdrop {
